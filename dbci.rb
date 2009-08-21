@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-txt_usage = "Usage: dbci <full_path_of_sqlite_db> -table:{table_name_in_db=full_path_of_textfile,*args} [-int:{column_name,*args} [-append:boolean]]"
+txt_usage = "Usage: dbci.rb <full_path_of_sqlite_db> -table:{<table_name_in_db>=<full_path_of_textfile>,*args} [-int:{<column_name>,*args} [-append:<boolean>]]"
 txt_info = <<TEXT
 #*******************************************************************************
 # NAME  
@@ -16,8 +16,8 @@ txt_info = <<TEXT
 #        commands, and execute them over those plain text files?
 #
 #        In some case, writing SQL is much more easier and quicker. This little
-#        tool helps CGI programmer to import plain text file into sqlite database
-#        as a structured table. Means, it enables programmer to concentrate on the
+#        tool helps CGI programmers to import plain text file into sqlite database
+#        as a structured table. Means, it enables a programmer to concentrate on the
 #        the program logic rather than typing & asserting various IO operations.
 #
 #        First row of the text file will be considered as column names.
@@ -50,7 +50,7 @@ txt_info = <<TEXT
 #
 #
 # EXAMPLE
-#        dbci company.db -table:{positions=/abc_company/position,employees=/abc_company/employees/} -int:{age,salary} -append:true
+#        dbci.rb company.db -table:{positions=/abc_company/position,employees=/abc_company/employees/} -int:{age,salary} -append:true
 #        Note: Do not put space between sub options!
 #
 #
@@ -70,7 +70,6 @@ txt_info = <<TEXT
 #        SQLite homepage: http://www.sqlite.org
 #
 #
-#*******************************************************************************
 TEXT
 
 tmp = "/tmp/tmp#{$$}"
