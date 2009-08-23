@@ -133,7 +133,7 @@ tables.each do |table|
 
   
   # we need data without header to import into db
-  datafile = "#{tmp}-#{table.txtfile}_data"
+  datafile = "#{tmp}-data"
   `sed '1d' #{table.txtfile} > #{datafile}`
 
   File.open("#{tmp}-insert_stmt", "w") do |file|
