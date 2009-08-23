@@ -76,8 +76,7 @@ tmp = "/tmp/tmp#{$$}"
 
 
 def err
-  puts "Non applicable arguments. Type 'dbci -help' for usage tips."
-  puts txt_usage
+  puts "Non applicable arguments. Type 'dbci.rb -help' for usage tips."
   exit 1
 end
 
@@ -92,7 +91,7 @@ end
 
 
 Table = Struct.new(:name, :txtfile)
-tables, integers, sqlfiles, append = [], [], [], false
+tables, integers, append = [], [], false
 
 
 # load supplied options here
@@ -107,10 +106,12 @@ ARGV.each do |a|
 
   elsif key.eql? '-int'
     integers << val
-  elsif key.eql? '-sql'
-    sqlfiles << val
   elsif key.eql? '-append'
     append = (val.eql? 'true') ? true : false
+  elsif key.match(/^[^-]+/)
+    puts "Option '#{key}' should start with '-' sign."
+    puts txt_usage
+    err
   end
 
 end
@@ -146,9 +147,9 @@ tables.each do |table|
   `sqlite3 #{db} "#{create_stmt}"`
   `sqlite3 #{db} < "#{tmp}-insert_stmt"`
 
+
   # remove temporary files
   `rm #{tmp}-*`
-
 
 end
 
