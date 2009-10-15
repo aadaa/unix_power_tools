@@ -144,7 +144,7 @@ tables.each do |table|
 
   # execute SQL statements
   `sqlite3 #{db} "DROP TABLE IF EXISTS #{table.name};"` unless append == true
-  `sqlite3 #{db} "#{create_stmt}"`
+  `sqlite3 #{db} "#{create_stmt}"` unless append == true
   `sqlite3 #{db} < "#{tmp}-insert_stmt"`
 
 
